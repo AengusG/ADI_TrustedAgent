@@ -1,0 +1,14 @@
+[Unit]
+Description=MQTT Sensor Data Publish Service
+After=systemd-networkd-wait-online.service 
+After=multi-user.target
+Wants=systemd-networkd-wait-online.service
+Wants=multi-user.target
+Wants=systemd-timesyncd.service
+
+[Service]
+ExecStart=/usr/bin/DP_Sensor/data-publish 192.168.1.3 1
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
